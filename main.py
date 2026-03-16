@@ -110,12 +110,12 @@ class ApartmentSettlement:
         self.suma_czynszow = 0
     def dodaj_rachunek(self, kwota):
         self.rachunki.append(kwota)
-        self.suma_rachunkow+=kwota
+        self.zmiana_rachunki+=kwota
     def dodaj_czynsz(self, kwota):
-        self>czynsze.append(kwota)
+        self.czynsze.append(kwota)
         self.suma_czynszow+=kwota
     def kwota_do_uregulowania(self):
-        return self.suma_rachunkow+self.suma_czynszow
+        return self.zmiana_rachunki+self.suma_czynszow
         
 
 
@@ -126,14 +126,16 @@ if __name__ == '__main__':
     for apartment in manager.apartments.values():
         print(apartment.key, apartment.name, apartment.location, apartment.area_m2)
         for room in apartment.rooms.values():
-            print('  ', room.name, room.area_m2)
+            print('Metraże mieszkań:  ', room.name, room.area_m2)
         
         for bill in manager.bills:
             if bill.apartment == apartment.key:
-                print('  ', bill.amount_pln, bill.date_due, bill.settlement_year, bill.settlement_month, bill.type)
+                print('Rachunki:  ', bill.amount_pln, bill.date_due, bill.settlement_year, bill.settlement_month, bill.type)
 
     for tenant in manager.tenants.values():
         print(tenant.name, tenant.apartment, tenant.room, tenant.rent_pln, tenant.deposit_pln, tenant.date_agreement_from, tenant.date_agreement_to)
         for transfer in manager.transfers:
             if transfer.tenant == tenant.name:
-                print('  ', transfer.amount_pln, transfer.date, transfer.settlement_year, transfer.settlement_month)
+                print('Płatności: ', transfer.amount_pln, transfer.date, transfer.settlement_year, transfer.settlement_month)
+
+    
