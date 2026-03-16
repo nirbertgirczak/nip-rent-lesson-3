@@ -100,6 +100,24 @@ class Manager:
         self.transfers = Transfer.from_json_file(self.parameters.transfers_json_path)
         self.bills = Bill.from_json_file(self.parameters.bills_json_path)
 
+class ApartmentSettlement:
+    def __init__(self, mieszkanie, miesiac):
+        self.mieszkanie = mieszkanie
+        self.miesiac = miesiac
+        self.rachunki = []
+        self.czynsze = []
+        self.suma_rachunkow = 0
+        self.suma_czynszow = 0
+    def dodaj_rachunek(self, kwota):
+        self.rachunki.append(kwota)
+        self.suma_rachunkow+=kwota
+    def dodaj_czynsz(self, kwota):
+        self>czynsze.append(kwota)
+        self.suma_czynszow+=kwota
+    def kwota_do_uregulowania(self):
+        return self.suma_rachunkow+self.suma_czynszow
+        
+
 
 if __name__ == '__main__':
     parameters = Parameters()
